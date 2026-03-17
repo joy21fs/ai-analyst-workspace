@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## AI Data Analyst Workspace (frontend-first)
+
+Portfolio app built with **Next.js + React + TypeScript** to demonstrate:
+
+- **Streaming chat UX** (simulated streaming) + **tool outputs**
+- **Data visualizations** (bar/line/pie) + **flowcharts**
+- **Connector management** UI (CRUD + “Test connection” + simulated realtime refresh)
+- **Mocked REST + GraphQL** APIs with **MSW**
+- **Component library** with **Storybook**
+- **Tests** with **Vitest** (jsdom) + MSW node server
 
 ## Getting Started
 
-First, run the development server:
+### Run the app
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+cd ai-analyst-workspace
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://127.0.0.1:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Run Storybook
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cd ai-analyst-workspace
+pnpm storybook --port 6006
+```
 
-## Learn More
+Open `http://localhost:6006`.
 
-To learn more about Next.js, take a look at the following resources:
+### Run tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cd ai-analyst-workspace
+pnpm test
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## What to demo
 
-## Deploy on Vercel
+- **Landing**: `/`
+- **Workspace**: `/workspace`
+  - Send prompts like:
+    - `bar chart of revenue by month`
+    - `line chart of revenue by month`
+    - `pie chart of revenue by region`
+    - `flowchart connector run`
+  - Click **Save** on a chart card to persist an insight
+- **Connectors**: `/connectors`
+  - Create a connector and click **Test**
+  - Name a connector with `fail` to see an error state (simulated)
+- **Account**: `/account`
+  - Change role and see gated actions
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Architecture (quick skim)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/domain/`: core domain types (`Dataset`, `Connector`, `Insight`, `ChatMessage`, `VizSpec`)
+- `src/api/`: REST + GraphQL clients and React Query hooks
+- `src/mocks/`: MSW handlers + in-memory mock DB (REST + GraphQL)
+- `src/components/`: reusable UI components (with `.stories.tsx`)
+- `src/features/`: feature modules (`chat`, `connectors`, `viz`, `account`)
+
+## Notes
+
+- In development, MSW starts automatically in `src/app/providers.tsx` and mocks `/api/*`.
+- The “streaming” chat is intentionally frontend-driven (deterministic) so the project runs without real API keys.
+
