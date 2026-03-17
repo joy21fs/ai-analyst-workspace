@@ -9,6 +9,30 @@ Portfolio app built with **Next.js + React + TypeScript** to demonstrate:
 - **Component library** with **Storybook**
 - **Tests** with **Vitest** (jsdom) + MSW node server
 
+## Demo
+- Screencasts:
+1. `/account`: switch roles and observe gated actions 
+
+https://github.com/user-attachments/assets/ae0848e7-b7bc-4019-bc06-656fc196baf8
+
+
+2. `/connectors`: create and test a connector 
+
+https://github.com/user-attachments/assets/52d24be0-5bf6-475d-9f07-9736045fa0c1
+
+
+3. `/workspace`: generate and save charts 
+
+https://github.com/user-attachments/assets/e51232aa-f809-4f84-96e9-4e71e40f2e66
+
+
+## Built with Cursor-assisted development
+This project was built with **Cursor (AI-assisted development)**, while I kept ownership of decisions and quality:
+- Used AI to accelerate: initial architecture drafts, component breakdown, typed data layer, testing scaffolding, and documentation
+- Human-reviewed and refined: naming/readability, state/error handling, maintainability, avoiding over-abstraction
+- Kept changes reviewable: work is split into small, semantic commits for easy review and rollback
+- Runs end-to-end without real backend/API keys (MSW mocks REST/GraphQL), so reviewers can validate quickly
+
 ## Getting Started
 
 ### Run the app
