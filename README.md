@@ -1,3 +1,5 @@
+_A recreation of core features I built over 3 years in production — rebuilt in ~30 minutes using Cursor and AI-assisted development.
+_
 ## AI Data Analyst Workspace (frontend-first)
 
 Portfolio app built with **Next.js + React + TypeScript** to demonstrate:
